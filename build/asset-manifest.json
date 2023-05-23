@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.da8944a0.css",
+    "main.js": "/static/js/main.083c695e.js",
+    "static/js/787.755d6b54.chunk.js": "/static/js/787.755d6b54.chunk.js",
+    "static/media/image6.png": "/static/media/image6.e0089890403cc17bc22c.png",
+    "static/media/sparsh_image.jpg": "/static/media/sparsh_image.9bee630f53c3fb23ba03.jpg",
+    "static/media/Trek.jpeg": "/static/media/Trek.b27994640ca600cba4e7.jpeg",
+    "static/media/Lighthouse.jpeg": "/static/media/Lighthouse.7af08d0e330abdf0c92a.jpeg",
+    "static/media/Sparsh_CV.pdf": "/static/media/Sparsh_CV.83f85f5af17dc9677838.pdf",
+    "static/media/Benzin-Bold.ttf": "/static/media/Benzin-Bold.f4826ddcf24e7e1ed982.ttf",
+    "static/media/Benzin-Regular.ttf": "/static/media/Benzin-Regular.a1717d5bc4d7fd99e902.ttf",
+    "static/media/sparsh-logo.svg": "/static/media/sparsh-logo.5c73f24e179cf9e57b011fb83cf6814e.svg",
+    "index.html": "/index.html",
+    "static/media/download.svg": "/static/media/download.5f1f4c0a3833bd30601e6daa12e266d9.svg",
+    "main.da8944a0.css.map": "/static/css/main.da8944a0.css.map",
+    "main.083c695e.js.map": "/static/js/main.083c695e.js.map",
+    "787.755d6b54.chunk.js.map": "/static/js/787.755d6b54.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.da8944a0.css",
+    "static/js/main.083c695e.js"
+  ]
+}

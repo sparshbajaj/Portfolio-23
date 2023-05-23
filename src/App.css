@@ -1,0 +1,128 @@
+/* background-image: linear-gradient(to bottom, hsla(158, 23%, 18%, 0) 0%, hsla(158, 23%, 18%, .013) 9.7%, hsla(158, 23%, 18%, .049) 18.1%, hsla(158, 23%, 18%, .104) 25.5%, hsla(158, 23%, 18%, .175) 31.9%, hsla(158, 23%, 18%, .259) 37.7%, hsla(158, 23%, 18%, .352) 43%, hsla(158, 23%, 18%, .45) 47.9%, hsla(158, 23%, 18%, .55) 52.8%, hsla(158, 23%, 18%, .648) 57.7%, hsla(158, 23%, 18%, .741) 63%, hsla(158, 23%, 18%, .825) 68.7%, hsla(158, 23%, 18%, .896) 75%, hsla(158, 23%, 18%, .951) 82.2%, hsla(158, 23%, 18%, .987) 90.5%, hsl(158, 23%, 18%) 100% ); */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;600;800&display=swap');
+
+
+body {
+  background-size: 100% 100%;
+  background-color: #263a32;
+  z-index: 0;
+}
+
+
+::-webkit-scrollbar {
+  width: 3px;
+  border-radius: 3px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+h1{
+  letter-spacing: 0.1rem;
+  line-height: 1.5em !important;
+  font-family: 'Benzin', sans-serif;
+  font-size: 3.5em;
+  color: #8fdcc2;
+}
+
+h2{
+  letter-spacing: 0.1rem;
+  line-height: 1.5em !important;
+  font-family: 'Benzin', sans-serif;
+  font-size: 3.5em;
+  color: #8fdcc2;
+}
+
+h3{
+  letter-spacing: 0.05rem;
+  line-height: 1.5em !important;
+  font-family: 'Benzin', sans-serif;
+  font-size: 2em;
+  font-weight: 800;
+  color: #8fdcc2;
+}
+
+h4{
+  letter-spacing: 0.05rem;
+  font-family: 'Benzin', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 200;
+  color: #8fdcc2;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem !important;
+    line-height: 3rem !important;
+  }
+  .logo-mob{
+    display: none;
+  }
+  .work-mob{
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+  }
+  
+}
+
+@media (max-width: 1200px) {
+  .logo-mob{
+    display: none;
+  }
+}
+
+p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.05rem;
+  color: hsl(157, 100%, 91%);
+  font-weight: 400;
+}
+::selection {
+  color: #8fdcc2;
+  background: #458c74;
+}
+
+.json-html img {
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 3em;
+  object-fit: cover;
+  background: black;
+}
+.json-html h1{
+  font-size: 2rem;
+  font-weight: 800;
+  color: #8fdcc2;
+  margin-bottom: 1em;
+}
+
+.json-html p{
+  color: #ffffff;
+  margin-bottom: 1.5em;
+}
+
+.menu-fix{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+.weather{
+  Display: inline;
+}
