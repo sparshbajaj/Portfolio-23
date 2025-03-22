@@ -1,7 +1,9 @@
 .contentContainer {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   padding: 2rem;
+  gap: 2rem;
 }
 
 .textBlock {
@@ -50,10 +52,98 @@
   border-radius: 5px;
   display: flex;
   align-items: center;
+  font-size: 1rem;
 }
 
 .spotifyIcon {
   width: 24px;
   height: 24px;
   margin-right: 10px;
+}
+
+/* Media Queries for Responsive Design */
+
+/* Tablet breakpoint */
+@media screen and (max-width: 1024px) {
+  .heading {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+  
+  .subheading {
+    font-size: 1.6rem;
+  }
+  
+  .paragraph {
+    font-size: 1.1rem;
+  }
+}
+
+/* Smaller tablet / Large mobile breakpoint */
+@media screen and (max-width: 768px) {
+  .contentContainer {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+  
+  .textBlock {
+    flex: 1 0 100%;
+    padding-right: 0;
+    margin-top: 2rem;
+  }
+  
+  .imageBlock {
+    flex: 1 0 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .heading {
+    font-size: 2.2rem;
+    line-height: 2.6rem;
+    max-width: 100%;
+  }
+  
+  .subheading {
+    font-size: 1.4rem;
+    max-width: 100%;
+  }
+}
+
+/* Mobile breakpoint */
+@media screen and (max-width: 767px) {
+  body  
+  .contentContainer {
+    padding: 1rem 0 3rem 0 ;
+  }
+  
+  .heading {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .subheading {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .paragraph {
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+  
+  .nowPlaying {
+    font-size: 0.9rem;
+  }
+  
+  .spotifyIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .imageBlock {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
 }

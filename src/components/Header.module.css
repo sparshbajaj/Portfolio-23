@@ -183,8 +183,14 @@
 
 @media (max-width: 768px) {
   .header {
-    padding: 0 20px;
+    padding: 0 15px;
     margin-top: 20px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .nav_links_wrapper {
