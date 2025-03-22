@@ -14,7 +14,7 @@
   height: auto;
 }
 
-.logo img {
+.logoImage {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -36,9 +36,10 @@
   align-items: center;
   gap: 0.8rem;
   text-decoration: none;
-  color: #333;
+  color: var(--kinda-black);
   padding: 0.5rem 1rem;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .navLink.active {
@@ -49,6 +50,7 @@
   color: var(--kinda-black);
 }
 
+/* Let's Talk Button */
 .lets_talk_link {
   display: flex;
   align-items: center;
@@ -59,16 +61,55 @@
   border: 2px solid currentColor;
   border-radius: 9999px;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.lets_talk_link:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  color: var(--kinda-black);
+/* Button fill animation from middle bottom */
+.talkButton {
+  position: relative;
+  z-index: 1;
 }
 
+.talkButton .button_background {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 0;
+  background: var(--kinda-black); /* Using the specific color variable */
+  transform: translateX(-50%);
+  transition: height 0.4s cubic-bezier(0.33, 1, 0.68, 1), border-radius 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+  z-index: -1;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0; /* Creates the concave shape */
+}
+
+.talkButton:hover .button_background {
+  height: 105%; /* Slightly more than 100% to ensure full coverage */
+  border-radius: 0; /* Remove the border radius when fully expanded */
+}
+
+.talkButton .button_background {
+  /* This will ensure the border-radius applies when not hovering */
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+.talkButton:hover .nav_text,
+.talkButton:hover .nav_icon {
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+/* Icon container */
 .nav_icon {
   width: 24px;
   height: 24px;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
 }
 
 .nav_icon svg {
@@ -76,9 +117,60 @@
   height: 100%;
 }
 
+/* About Me button SVG continuous rotation with bouncy spring-back */
+.aboutButton .nav_icon svg {
+  transform-origin: center;
+  transform: rotate(0deg);
+}
+
+/* Continuous rotation while hovering */
+.aboutButton:hover .nav_icon svg {
+  animation: continuousRotation 5s linear infinite;
+}
+
+/* Bouncy spring-back when hover ends */
+.aboutButton:not(:hover) .nav_icon svg {
+  animation: springBack 1.2s ease-out forwards;
+}
+
+/* Define the continuous rotation animation */
+@keyframes continuousRotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Define the bouncy spring-back animation */
+@keyframes springBack {
+  0% {
+    /* Start from current rotation */
+  }
+  20% {
+    transform: rotate(-30deg);
+  }
+  40% {
+    transform: rotate(20deg);
+  }
+  60% {
+    transform: rotate(-15deg);
+  }
+  80% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .nav_text {
   font-size: 1rem;
   font-weight: 500;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
 }
 
 .mobileMenuButton {
@@ -90,6 +182,11 @@
 }
 
 @media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+    margin-top: 20px;
+  }
+
   .nav_links_wrapper {
     display: none;
   }
@@ -116,14 +213,18 @@
     display: flex;
   }
 
-  .nav_links_wrapper {
+  .nav.showMenu .nav_links_wrapper {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
+    width: 100%;
   }
 
   .lets_talk_link {
     border-radius: 0.5rem;
     padding: 0.8rem 1.5rem;
+    width: 100%;
+    justify-content: center;
   }
 }

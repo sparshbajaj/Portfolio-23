@@ -18,7 +18,7 @@ const Header = () => {
           <NavLink
             to="/about-me"
             className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.active : ''}`
+              `${styles.navLink} ${isActive ? styles.active : ''} ${styles.aboutButton}`
             }
           >
             <div className={styles.nav_icon}>
@@ -35,7 +35,11 @@ const Header = () => {
             <div className={styles.nav_text}>About Me</div>
           </NavLink>
 
-          <a href="mailto:sparshbajaj97@gmail.com?subject=Let's Talk" className={styles.lets_talk_link}>
+          <a 
+            href="mailto:sparshbajaj97@gmail.com?subject=Let's Talk" 
+            className={`${styles.lets_talk_link} ${styles.talkButton}`}
+          >
+            <span className={styles.button_background}></span>
             <div className={styles.nav_icon}>
               <svg width="auto" height="auto" viewBox="0 0 263 263" fill="none">
                 <path

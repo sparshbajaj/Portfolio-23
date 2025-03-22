@@ -11,7 +11,7 @@
   line-height: 20px;
   font-weight: 400;
   font-size: 14px;
-  color: #333;
+  color: var(--kinda-black);
 
   color-scheme: light dark;
   background-color: var(--dark-grey);
@@ -32,7 +32,7 @@ a:hover {
 }
 
 body {
-  color: #333;
+  color: var(--kinda-black);
   background-color: var(--cell-grey);
   margin: 0;
   min-height: 100vh;
@@ -64,12 +64,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--kinda-black);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: var(--dark-grey);
+  border-color: var(--kinda-black);
 }
 button:focus,
 button:focus-visible {
@@ -82,9 +82,9 @@ button:focus-visible {
     background-color: var(--cell-grey)
   }
   a:hover {
-    color: #747bff;
+    color: var(--kinda-black);
   }
   button {
-    background-color: #f9f9f9;
+    background-color: var(--kinda-black);
   }
 }
