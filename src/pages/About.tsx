@@ -4,19 +4,52 @@ import TrekImage from '/assets/Trek.b27994640ca600cba4e7.jpeg';
 import FigmaIcon from '/assets/figma.svg';
 import NotionIcon from '/assets/notion2.svg';
 import XDIcon from '/assets/adobe-xd.svg';
-import MiroIcon from '/assets/miro.svg';
+import Miro from '/assets/miro.svg';
 import AIIcon from '/assets/ai.svg';
 import PSIcon from '/assets/ps.svg';
 import WebflowIcon from '/assets/webflow.svg';
 import AEIcon from '/assets/after-effects.svg';
 import AmericanFlag from '/assets/american_flag2.svg';
 import IndiaFlag from '/assets/India_flag.svg';
+import DownloadButton from '../components/DownloadButton';
 
 const About = () => {
+  // Software tools data organized in arrays for easier management
+  const proficientTools = [
+    { icon: FigmaIcon, name: "Figma" },
+    { icon: NotionIcon, name: "Notion" },
+    { icon: XDIcon, name: "Adobe XD" },
+    { icon: Miro, name: "Miro" },
+    { icon: AIIcon, name: "Illustrator" },
+    { icon: PSIcon, name: "Photoshop" }
+  ];
+  
+  const learningTools = [
+    { icon: WebflowIcon, name: "Webflow" },
+    { icon: AEIcon, name: "After Effects" }
+  ];
+  
+  // Languages data for easier management
+  const languages = [
+    { flag: AmericanFlag, country: "USA", fluency: "Fluent", name: "English" },
+    { flag: IndiaFlag, country: "India", fluency: "Native", name: "Hindi" },
+    { flag: IndiaFlag, country: "India", fluency: "Native", name: "Punjabi" }
+  ];
+  
+  // Work history data
+  const workHistory = ["Agency", "Startup", "In-house", "Freelance"];
+  
+  // Disciplines data
+  const disciplines = [
+    "UI/UX", "Web Design", "Illustration", "HTML", "CSS", 
+    "Research", "Strategy", "Ideation", "Prototyping", 
+    "Wireframing", "Interaction Design", "Visual Design", "Game Design"
+  ];
+
   return (
     <div id="swup" className={styles.content_container}>
       {/* Hero Section */}
-      <div className={styles.hero_container}>
+      <section className={styles.hero_container}>
         <div className={styles.hero_image}>
           <img src={TrekImage} alt="Sparsh Bajaj" />
         </div>
@@ -46,23 +79,23 @@ const About = () => {
             When I'm not at work, I enjoy brewing my own ☕ coffee by the liffey river, listening to 🎵 music, and 🌍 exploring the world with my friends.
           </p>
 
-          <button className={styles.cv_button}>
-            <a href="/assets/Sparsh-Bajaj UX-Designer-CV.pdf" download>
-              <span className={styles.cv_button_top}>Download CV</span>
-            </a>
-          </button>
+          <DownloadButton
+            href="/assets/Sparsh-Bajaj UX-Designer-CV.pdf"
+            download="Sparsh-Bajaj UX-Designer-CV.pdf"
+          >
+            <span>Download CV</span>
+          </DownloadButton>
         </div>
-      </div>
+      </section>
 
       {/* Stats Grid */}
-      <div className={styles.stats}>
-        {/* Full Name */}
+      <section className={styles.stats}>
+        {/* First Row - 3 blocks (Full Name, Degree, Experience) */}
         <div className={styles.stat_wrapper}>
           <div className={styles.stat_title}>Full Name</div>
           <div className={styles.stat}>Sparsh Bajaj</div>
         </div>
 
-        {/* Degree */}
         <div className={styles.stat_wrapper}>
           <div className={styles.stat_title}>Degree</div>
           <div className={styles.stat}>
@@ -70,111 +103,79 @@ const About = () => {
           </div>
         </div>
 
-        {/* Experience */}
         <div className={styles.stat_wrapper}>
           <div className={styles.stat_title}>Experience</div>
           <div className={styles.stat}>6+ Years</div>
         </div>
 
-        {/* Software */}
-        <div className={styles.stat_wrapper}>
+        {/* Software section - full width (spans all 6 columns) */}
+        <div className={`${styles.stat_wrapper}`}>
           <div className={styles.stat_title}>Software</div>
           <div className={styles.software_content}>
             <div className={styles.software_group}>
               <div className={styles.software_label}>Proficient</div>
               <div className={styles.software_icons}>
-                <img src={FigmaIcon} alt="Figma" />
-                <img src={NotionIcon} alt="Notion" />
-                <img src={XDIcon} alt="Adobe XD" />
-                <img src={WebflowIcon} alt="Webflow" />
-                <img src={AIIcon} alt="Illustrator" />
-                <img src={PSIcon} alt="Photoshop" />
+                {proficientTools.map((tool, index) => (
+                  <img key={index} src={tool.icon} alt={tool.name} title={tool.name} />
+                ))}
               </div>
             </div>
             
             <div className={styles.software_group}>
               <div className={styles.software_label}>Learning</div>
               <div className={styles.software_icons}>
-                <img src={WebflowIcon} alt="Webflow" />
-                <img src={AEIcon} alt="After Effects" />
+                {learningTools.map((tool, index) => (
+                  <img key={index} src={tool.icon} alt={tool.name} title={tool.name} />
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Work History */}
-        <div className={styles.stat_wrapper}>
+        {/* Work History - half width */}
+        <div className={styles.stat_wrapper_half}>
           <div className={styles.stat_title}>Work History</div>
           <div className={styles.checklist}>
-            <div className={styles.checklist_item}>
-              <span className={styles.checkbox}>✓</span> Agency
-            </div>
-            <div className={styles.checklist_item}>
-              <span className={styles.checkbox}>✓</span> Startup
-            </div>
-            <div className={styles.checklist_item}>
-              <span className={styles.checkbox}>✓</span> In-house
-            </div>
-            <div className={styles.checklist_item}>
-              <span className={styles.checkbox}>✓</span> Freelance
-            </div>
+            {workHistory.map((item, index) => (
+              <div key={index} className={styles.checklist_item}>
+                <span className={styles.checkbox}>✓</span> {item}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Disciplines */}
-        <div className={styles.stat_wrapper}>
+        {/* Disciplines - 1.5 width */}
+        <div className={styles.stat_wrapper_wide}>
           <div className={styles.stat_title}>Disciplines</div>
           <ul className={styles.disciplines_list}>
-            <li>UI/UX</li>
-            <li>Web Design</li>
-            <li>Illustration</li>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Research</li>
-            <li>Strategy</li>
-            <li>Ideation</li>
-            <li>Prototyping</li>
-            <li>Wireframing</li>
-            <li>Interaction Design</li>
-            <li>Visual Design</li>
-            <li>Game Design</li>
+            {disciplines.map((discipline, index) => (
+              <li key={index}>{discipline}</li>
+            ))}
           </ul>
         </div>
 
-        {/* Languages */}
-        <div className={styles.stat_wrapper}>
+        {/* Third Row - Languages and Myers-Briggs (both half-height) */}
+        <div className={`${styles.stat_wrapper_wide} ${styles.half_height}`}>
           <div className={styles.stat_title}>Languages</div>
           <div className={styles.languages_content}>
-            <div className={styles.language_item}>
-              <img src={AmericanFlag} alt="USA Flag" className={styles.flag} />
-              <div className={styles.language_info}>
-                <div className={styles.language_fluency}>Fluent</div>
-                <div className={styles.language_name}>English</div>
+            {languages.map((language, index) => (
+              <div key={index} className={styles.language_item}>
+                <img src={language.flag} alt={`${language.country} Flag`} className={styles.flag} />
+                <div className={styles.language_info}>
+                  <div className={styles.language_fluency}>{language.fluency}</div>
+                  <div className={styles.language_name}>{language.name}</div>
+                </div>
               </div>
-            </div>
-            <div className={styles.language_item}>
-              <img src={IndiaFlag} alt="India Flag" className={styles.flag} />
-              <div className={styles.language_info}>
-                <div className={styles.language_fluency}>Native</div>
-                <div className={styles.language_name}>Hindi</div>
-              </div>
-            </div>
-            <div className={styles.language_item}>
-              <img src={IndiaFlag} alt="Punjabi Flag" className={styles.flag} />
-              <div className={styles.language_info}>
-                <div className={styles.language_fluency}>Native</div>
-                <div className={styles.language_name}>Punjabi</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Myers-Briggs */}
-        <div className={styles.stat_wrapper}>
+        {/* Myers-Briggs - half-height */}
+        <div className={`${styles.stat_wrapper_wide} ${styles.half_height}`}>
           <div className={styles.stat_title}>Myers-Briggs</div>
           <div className={styles.stat}>INFJ-T</div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
