@@ -1,6 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import styles from './ProjectsIsland.module.css';
 import GridIcon from './icons/GridIcon';
+import thumb1 from '/assets/thumb-1.png';
+import thumb2 from '/assets/thumb-2.png';
 
 interface Project {
   title: string;
@@ -13,25 +15,25 @@ const PROJECTS: Project[] = [
   {
     title: 'Fluence',
     type: 'WEB DESIGN',
-    thumb: 'thumb-1.png',
+    thumb: thumb1,
     link: 'https://loving-sweatshirt-6fa.notion.site/Fluence-Website-Redesign-c367710cd28542cc8f122508f86b106e',
   },
   {
     title: 'Speakeasy',
     type: 'UI/UX',
-    thumb: 'logo_dark.png',
+    thumb: thumb2,
     link: 'https://loving-sweatshirt-6fa.notion.site/Fluence-Website-Redesign-c367710cd28542cc8f122508f86b106e',
   },
   {
     title: 'Codepen',
     type: 'IDENTITY',
-    thumb: 'thumb-1.png',
+    thumb: thumb1,
     link: 'https://loving-sweatshirt-6fa.notion.site/Fluence-Website-Redesign-c367710cd28542cc8f122508f86b106e',
   },
   {
     title: 'Velare',
     type: 'WEB DESIGN',
-    thumb: 'thumb-2.png',
+    thumb: thumb2,
     link: 'https://loving-sweatshirt-6fa.notion.site/Fluence-Website-Redesign-c367710cd28542cc8f122508f86b106e',
   },
 ];
@@ -43,7 +45,6 @@ const ProjectsIsland = () => {
   const collapseTimeoutRef = useRef<number | null>(null);
   const islandRef = useRef<HTMLDivElement>(null);
 
-  // Handle expansion with debounce
   const handleExpand = useCallback(() => {
     if (collapseTimeoutRef.current) {
       clearTimeout(collapseTimeoutRef.current);
@@ -56,11 +57,10 @@ const ProjectsIsland = () => {
       expandTimeoutRef.current = window.setTimeout(() => {
         setIsExpanded(true);
         expandTimeoutRef.current = null;
-      }, 100); // Short delay for better UX
+      }, 100);
     }
   }, [isExpanded]);
 
-  // Handle collapse with debounce
   const handleCollapse = useCallback(() => {
     if (expandTimeoutRef.current) {
       clearTimeout(expandTimeoutRef.current);
@@ -73,18 +73,16 @@ const ProjectsIsland = () => {
       collapseTimeoutRef.current = window.setTimeout(() => {
         setIsExpanded(false);
         collapseTimeoutRef.current = null;
-      }, 300); // Longer delay for collapse to prevent accidental collapses
+      }, 300);
     }
   }, [isExpanded]);
 
-  // Handle click toggle
   const handleToggle = useCallback(() => {
     if (!isExpanded) {
       setIsExpanded(true);
     }
   }, [isExpanded]);
 
-  // Handle click outside to collapse
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (islandRef.current && !islandRef.current.contains(event.target as Node) && isExpanded) {
@@ -98,7 +96,6 @@ const ProjectsIsland = () => {
     };
   }, [isExpanded]);
 
-  // Clean up timeouts on unmount
   useEffect(() => {
     return () => {
       if (expandTimeoutRef.current) clearTimeout(expandTimeoutRef.current);
@@ -117,13 +114,11 @@ const ProjectsIsland = () => {
       role="region"
       aria-label="Projects showcase"
     >
-      {/* Label */}
       <div className={styles.label_container}>
         <GridIcon className={styles.label_icon} />
         <span className={styles.label_text}>Projects</span>
       </div>
 
-      {/* Projects Grid */}
       <div className={styles.projects_grid}>
         <ul className={styles.projects_list}>
           {PROJECTS.map((project, index) => (
@@ -147,10 +142,8 @@ const ProjectsIsland = () => {
                 </div>
                 <div 
                   className={styles.project_thumbnail}
-                  style={{ backgroundImage: `url(/assets/${project.thumb})` }}
-                >
-                  {/* No need for hidden img tag since we're using background-image */}
-                </div>
+                  style={{ backgroundImage: `url(${project.thumb})` }}
+                />
               </a>
             </li>
           ))}
