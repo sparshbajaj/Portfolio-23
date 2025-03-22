@@ -42,7 +42,7 @@
   padding-top: 100%;
   border-radius: 50% 50% 0 0;
   overflow: hidden;
-  background: url('assets/sparsh-image.jpg') no-repeat center center/cover;
+  background: url('/assets/sparsh-image.jpg') no-repeat center center/cover;
 }
 
 .nowPlaying {

@@ -1,0 +1,43 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+import styled from 'styled-components';
+const DownloadButton = ({ children, href, download }) => {
+    return (_jsx(StyledWrapper, { children: _jsx("button", { className: "download-button", children: children }) }));
+};
+const StyledWrapper = styled.div `
+  button {
+    padding: 0.1em 0.25em;
+    width: 13em;
+    height: 4.2em;
+    background-color: var(--kinda-black);
+    border: 0.08em solid #fff;
+    border-radius: 0.8em;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  button span {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0.4em;
+    width: 8.25em;
+    height: 2.5em;
+    background-color: var(--kinda-black);
+    border-radius: 0.6em;
+    font-size: 1.5em;
+    color: #fff;
+    border: 0.08em solid #fff;
+    box-shadow: 0 0.4em 0.1em 0.019em #fff;
+  }
+
+  button span:hover {
+    transition: all 0.5s;
+    transform: translate(0, 0.4em);
+    box-shadow: 0 0 0 0 #fff;
+  }
+
+  button span:not(hover) {
+    transition: all 1s;
+  }`;
+export default DownloadButton;
