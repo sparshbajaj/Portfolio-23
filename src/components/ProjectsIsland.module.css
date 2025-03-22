@@ -1,0 +1,302 @@
+/* ProjectsIsland.module.css */
+
+/* Base Island Styles */
+.island {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f1f1f;
+  border: 1px solid #2b2b2b;
+  border-radius: 35px;
+  width: 175px;
+  height: 59px;
+  overflow: hidden;
+  transition: 
+    width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 999;
+  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.37);
+  cursor: pointer;
+  will-change: transform, width, height, box-shadow;
+  backface-visibility: hidden;
+}
+
+.island:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Label Container */
+.label_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: 
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0s;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Label Elements */
+.label_icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.label_text {
+  color: #d1d1d1;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.island:hover .label_icon,
+.island:hover .label_text {
+  transform: scale(1.05);
+}
+
+/* Expanded State */
+.island_expanded {
+  width: min(90%, 1142px);
+  height: auto;
+  min-height: 130px;
+  border-radius: 22px;
+  padding: 1.5rem;
+  cursor: default;
+  transform: translateX(-50%) translateY(-5px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+}
+
+.island_expanded .label_container {
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  transition: 
+    opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.2s;
+}
+
+/* Projects Grid */
+.projects_grid {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  max-height: 0;
+  transition: 
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.3s;
+  pointer-events: none;
+}
+
+.island_expanded .projects_grid {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  max-height: 800px;
+  transition: 
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+    max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0s;
+  pointer-events: auto;
+}
+
+/* Projects List */
+.projects_list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  will-change: transform;
+}
+
+/* Project Items */
+.project_item {
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  --animation-order: 0;
+}
+
+.island_expanded .project_item {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(0.1s + var(--animation-order) * 0.05s);
+}
+
+.project_item:hover {
+  transform: translateY(-5px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Project Link */
+.project_link {
+  display: block;
+  height: 120px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: #1a1a1a;
+  padding: 1.25rem;
+  transform: translateZ(0);
+  transition: 
+    background-color 0.3s ease,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.project_link:hover {
+  transform: scale(1.03);
+  background-color: #222;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.project_link:active {
+  transform: scale(0.98);
+  transition: transform 0.2s ease;
+}
+
+/* Project Content */
+.project_content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project_title {
+  color: #e1e1e1;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  transform: translateZ(0);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.project_link:hover .project_title {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.project_type {
+  color: #8c8c8c;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transform: translateZ(0);
+  transition: color 0.3s ease;
+}
+
+.project_link:hover .project_type {
+  color: #a0a0a0;
+}
+
+/* Thumbnail Effects */
+.project_thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+  transition: 
+    opacity 0.4s ease, 
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.project_link:hover .project_thumbnail {
+  opacity: 0.25;
+  transform: scale(1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .projects_list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects_list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .island_expanded {
+    width: 90%;
+    padding: 1.25rem;
+  }
+  
+  .project_link {
+    height: 110px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects_list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .island {
+    width: 160px;
+    height: 54px;
+  }
+  
+  .label_text {
+    font-size: 0.85rem;
+  }
+  
+  .island_expanded {
+    padding: 1rem;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion) {
+  .island,
+  .label_container,
+  .projects_grid,
+  .project_item,
+  .project_link,
+  .project_thumbnail {
+    transition-duration: 0.1s;
+    animation-duration: 0.1s;
+  }
+}

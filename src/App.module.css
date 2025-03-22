@@ -1,0 +1,8 @@
+.appContainer {
+  position: relative;
+}
+
+.mainContent {
+  padding: 2rem;
+  margin-top: 80px;
+}
