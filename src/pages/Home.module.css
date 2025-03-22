@@ -11,19 +11,22 @@
 }
 
 .heading {
-  font-size: 3rem;
-  line-height: 3.5rem;
+  font-size: 3.3rem;
+  line-height: 4rem;
   max-width: 20ch;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .subheading {
-  margin-bottom: 2rem;
-  font-size: 1.25rem;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  line-height: 1.4em;
 }
 
 .paragraph {
   line-height: 1.6;
+  font-size: 1.3rem;
+  max-width: 71ch;
 }
 
 .imageBlock {
@@ -37,17 +40,16 @@
   padding-top: 100%;
   border-radius: 50% 50% 0 0;
   overflow: hidden;
-  background: url('/assets/Trek.b27994640ca600cba4e7.jpeg') no-repeat center center/cover;
+  background: url('assets/sparsh-image.jpg') no-repeat center center/cover;
 }
 
 .nowPlaying {
   text-align: left;
-  background-color: var(--cell-grey);
+  background-color: #e8f5e9;
   padding: 10px;
   border-radius: 5px;
   display: flex;
   align-items: center;
-  margin-top: 1rem;
 }
 
 .spotifyIcon {

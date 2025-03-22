@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&display=swap');
+
 :root {
   --kinda-black: #1f1f1f;
   --cell-grey: #e3e3e3;
@@ -5,12 +7,13 @@
   --dark-grey-21: #363636;
   --almost-white: #eee;
   
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Manrope', sans-serif;
+  line-height: 20px;
   font-weight: 400;
+  font-size: 14px;
+  color: #333;
 
   color-scheme: light dark;
-  color: var(--kinda-black);
   background-color: var(--dark-grey);
 
   font-synthesis: none;
@@ -29,17 +32,29 @@ a:hover {
 }
 
 body {
+  color: #333;
+  background-color: var(--cell-grey);
   margin: 0;
+  min-height: 100vh;
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
-  background: var(--cell-grey) ;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
 }
+
+h1 { font-size: 38px; line-height: 44px; margin: 20px 0 10px }
+h2 { font-size: 32px; line-height: 36px; margin: 20px 0 10px }
+h3 { font-size: 24px; line-height: 30px; margin: 20px 0 10px }
+h4 { font-size: 18px; line-height: 24px; margin: 10px 0 }
+h5 { font-size: 14px; line-height: 20px; margin: 10px 0 }
+h6 { font-size: 12px; line-height: 18px; margin: 10px 0 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-weight: 800;
 }
 
 button {
@@ -63,8 +78,8 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--kinda-black);
+    background-color: var(--cell-grey)
   }
   a:hover {
     color: #747bff;
