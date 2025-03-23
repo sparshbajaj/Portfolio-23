@@ -198,7 +198,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0);
   z-index: 1000;
   transform: translateY(-100%);
   transition: transform 0.4s var(--header-animation-timing);
@@ -212,7 +212,7 @@
 
 .mobileMenuContent {
   padding: 100px 20px 40px;
-  max-width: 1200px;
+  max-width: 690px;
   margin: 0 auto;
 }
 
@@ -221,7 +221,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
-  margin-bottom: 3rem;
 }
 
 .mobileProjectCard {
@@ -229,7 +228,7 @@
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 120px;
+  height: 12vh;
   position: relative;
   will-change: transform;
 }
@@ -255,7 +254,7 @@
 
 .projectInfo {
   padding: 1rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  background: #2d2d2d;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -364,6 +363,7 @@
   .header {
     /* padding: 0 15px; */
     margin-top: 20px;
+    background: var(--cell-grey);
   }
 
   .nav_links_wrapper {

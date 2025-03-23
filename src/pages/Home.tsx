@@ -1,6 +1,17 @@
 import styles from './Home.module.css';
+import Weather from '../components/Weather';
+import { useState, useEffect } from 'react';
 
 const Home = () => {
+  const [timestamp, setTimestamp] = useState(Date.now());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimestamp(Date.now());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <div className={styles.contentContainer}>
@@ -17,7 +28,7 @@ const Home = () => {
             complex issue to make it easier for end user, I always A/B test and backup my 
             designs with data, which not just helps me decide what's best but also helps 
             stakeholders to understand why designs are necessary. Currently looking for 
-            opportunities in Dublin, Ireland.
+            opportunities in Dublin, Ireland <Weather />
           </p>
         </div>
         <div className={styles.imageBlock}>
