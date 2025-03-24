@@ -1,42 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import styles from './ProjectsIsland.module.css';
 import GridIcon from './icons/GridIcon';
-import thumb1 from '/assets/thumb-1.png';
-import thumb2 from '/assets/thumb-2.png';
-
-interface Project {
-  title: string;
-  type: string;
-  thumb: string;
-  link: string;
-}
-
-const PROJECTS: Project[] = [
-  {
-    title: 'Fluence',
-    type: 'WEB DESIGN',
-    thumb: thumb1,
-    link: 'https://loving-sweatshirt-6fa.notion.site/Fluence-Website-Redesign-c367710cd28542cc8f122508f86b106e',
-  },
-  {
-    title: 'Speakeasy',
-    type: 'UI/UX',
-    thumb: thumb2,
-    link: 'https://loving-sweatshirt-6fa.notion.site/Fluence-Website-Redesign-c367710cd28542cc8f122508f86b106e',
-  },
-  {
-    title: 'Codepen',
-    type: 'IDENTITY',
-    thumb: thumb1,
-    link: 'https://loving-sweatshirt-6fa.notion.site/Fluence-Website-Redesign-c367710cd28542cc8f122508f86b106e',
-  },
-  {
-    title: 'Velare',
-    type: 'WEB DESIGN',
-    thumb: thumb2,
-    link: 'https://loving-sweatshirt-6fa.notion.site/Fluence-Website-Redesign-c367710cd28542cc8f122508f86b106e',
-  },
-];
+import { PROJECTS } from '../data/projects';
 
 const ProjectsIsland = () => {
   const [isExpanded, setIsExpanded] = useState(false);
