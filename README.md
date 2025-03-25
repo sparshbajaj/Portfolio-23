@@ -3,9 +3,15 @@
 ## Project Overview
 A modern portfolio showcase built with React 19 and TypeScript, featuring responsive design, interactive components, and performance optimization. The project demonstrates best practices for modern web development including atomic design patterns, CSS-in-JS styling, and CI/CD integration.
 
-## Last Updated: March 22, 2025
+## Last Updated: March 25, 2025
 
 ### Changelog (Recent Updates)
+#### [v0.5.0] - 2025-03-25
+- feat(content): Add CV download functionality with secure PDF hosting (#PR45)
+  - Implemented DownloadButton component with aria-labels
+  - Added stats section to About page
+  - Integrated PDF.js for preview functionality
+
 #### [v0.4.0] - 2025-03-22
 - feat(navigation): Implement mobile-responsive hamburger menu (#PR42)
   - Added touch gesture support for menu interactions
@@ -23,11 +29,6 @@ A modern portfolio showcase built with React 19 and TypeScript, featuring respon
    - Image lazy loading
    - Code splitting implementation
    - Bundle size analysis
-
-3. **Content Strategy**
-   - Portfolio item JSON schema
-   - CMS integration planning
-   - i18n implementation
 
 ## Getting Started
 
