@@ -80,8 +80,8 @@ const About = () => {
           </p>
 
           <DownloadButton
-            href="/assets/Sparsh-Bajaj UX-Designer-CV.pdf"
-            download="Sparsh-Bajaj UX-Designer-CV.pdf"
+            href="/assets/Sparsh-Bajaj-UX-Designer-CV.pdf"
+            download="Sparsh-BajajUX-Designer-CV.pdf"
           >
             <span>Download CV</span>
           </DownloadButton>

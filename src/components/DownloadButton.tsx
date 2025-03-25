@@ -8,9 +8,19 @@ interface DownloadButtonProps {
 }
 
 const DownloadButton: React.FC<DownloadButtonProps> = ({ children, href, download }) => {
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = download;
+    link.click();
+  };
+
   return (
     <StyledWrapper>
-      <button className="download-button">
+      <button 
+        className="download-button" 
+        onClick={handleDownload}
+      >
         {children}
       </button>
     </StyledWrapper>
