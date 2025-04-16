@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import './index.css'; // import Tailwind CSS styles
+import './index.css';
 import FloatingMenu from './components/FloatingMenu';
 import Footer from './components/Footer';
 import WorkPreviews from './components/WorkPreviews';
@@ -14,6 +14,7 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 function App() {
 
+  // --- Firebase Config (Keep as is) ---
   const firebaseConfig = {
     apiKey: "AIzaSyCiifFCn9dgxqFt5QP60COOdyr1ehImkJg",
     authDomain: "portfo-2020.firebaseapp.com",
@@ -27,30 +28,32 @@ function App() {
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   logEvent(analytics);
+  // --- End Firebase Config ---
 
   return (
-    <div className="App">
-      {/* top header menu */}
-      <div className="mb-20 menu-fix">
-        <FloatingMenu />
-        <div style={{ height: '15vh' }}></div>
-      </div>
-      
-      {/* work previews or work detail */}
-      <Router>
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<WorkPreviews />} />
-            <Route path="/work/:slug" element={<WorkDetail />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </AnimatePresence>
-      </Router>
+    <div className="App flex flex-col min-h-screen"> {/* Ensure App takes full height */}
+      {/* FloatingMenu is fixed, so it's outside the main flow */}
+      {/* Removed mb-20 and wrapper div for menu */}
+      <FloatingMenu />
+      {/* Removed fixed height spacer div */}
+
+      {/* Main content area with padding for fixed header and footer */}
+      {/* Added main tag, pt-16/md:pt-20 for menu height, pb for footer, flex-grow */}
+      <main className="flex-grow pt-16 md:pt-20 pb-16 sm:pb-24">
+        <Router>
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route path="/" element={<WorkPreviews />} />
+              <Route path="/work/:slug" element={<WorkDetail />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </AnimatePresence>
+        </Router>
+      </main>
 
       {/* Footer */}
-      <div className="mt-20">
-          <Footer />
-      </div>
+      {/* Removed mt-20 from wrapper div */}
+      <Footer />
     </div>
   );
   
