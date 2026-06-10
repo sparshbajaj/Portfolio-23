@@ -22,7 +22,7 @@ I am a Sci-fi and space geek, and a tech-savvy designer at heart. Simplicity, ge
 
 Here is a glimpse of the portfolio website layout:
 
-![Sparsh Bajaj Portfolio Cover](./public/assets/opengraph.webp)
+![Sparsh Bajaj Portfolio Cover](./public/assets/portfolio-screenshot.png)
 
 ### 💼 Featured Designs & Case Studies
 
