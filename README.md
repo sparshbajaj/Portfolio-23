@@ -1,78 +1,86 @@
-# Portfolio 2025 - React Project
+# 🌌 Sparsh Bajaj | UX Designer & Creative Developer
 
-## Project Overview
-A modern portfolio showcase built with React 19 and TypeScript, featuring responsive design, interactive components, and performance optimization. The project demonstrates best practices for modern web development including atomic design patterns, CSS-in-JS styling, and CI/CD integration.
+Welcome to my portfolio website repository! This site is designed to showcase my journey, projects, and design philosophy.
 
-## Last Updated: March 25, 2025
-
-### Changelog (Recent Updates)
-#### [v0.5.0] - 2025-03-25
-- feat(content): Add CV download functionality with secure PDF hosting (#PR45)
-  - Implemented DownloadButton component with aria-labels
-  - Added stats section to About page
-  - Integrated PDF.js for preview functionality
-
-#### [v0.4.0] - 2025-03-22
-- feat(navigation): Implement mobile-responsive hamburger menu (#PR42)
-  - Added touch gesture support for menu interactions
-  - Integrated Framer Motion for smooth animations
-  - Created custom SVG icons using react-icons package
-- refactor(styles): Migrate CSS modules to PostCSS nesting (#PR41)
-- fix(accessibility): Improve ARIA labels for navigation elements (#PR40)
-
-### Development Roadmap
-1. **Core UI Completion** (Current Sprint)
-   - [x] Responsive header component
-   - [x] Footer component with social integrations
-
-2. **Performance Optimization**
-   - Image lazy loading
-   - Code splitting implementation
-   - Bundle size analysis
-
-## Getting Started
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Production build
-npm run build
-
-# Run tests
-npm test
-```
-
-## Key Functionality
--  React 19 with concurrent features
--  CSS Modules + PostCSS modern pipeline
--  Vite 5 build tooling
--  Mobile-first responsive design
--  Performance monitoring integration
--  TypeScript 5.3 type safety
-
-## Version Control
-### Commit Convention
-- `feat`: New feature implementation
-- `fix`: Bug fix or patch
-- `docs`: Documentation changes
-- `style`: Code formatting/style changes
-- `refactor`: Code restructuring
-- `test`: Test additions/modifications
-- `chore`: Maintenance tasks
-
-### Branch Strategy
-- `main`: Production-ready code
-- `dev`: Integration branch
-- `feature/*`: New functionality
-- `hotfix/*`: Critical production fixes
-
-Example commit message:
-```bash
-git commit -m "feat(nav): add mobile menu component [JIRA-123]"
-```
+[![Website](https://img.shields.io/badge/Website-sparshbajaj.me-blue?style=for-the-badge&logo=google-chrome&logoColor=white&labelColor=2B2B2B&color=4F46E5)](https://sparshbajaj.me)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sparsh_Bajaj-blue?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=2B2B2B&color=0A66C2)](https://www.linkedin.com/in/sparshbajaj/)
 
 ---
+
+## 🧑‍💻 About Me
+
+I am a Sci-fi and space geek, and a tech-savvy designer at heart. Simplicity, geometry, and symmetry are at the core of my design aesthetics. With **over 6 years of experience** in UX, research, ideation, and UI design, my main focus is solving complex user experience issues and backing my designs with data.
+
+* 🎓 **MSc. Cyber Security** & **B.Tech Computer Science**
+* 📍 **Location**: Dublin, Ireland
+* 🚀 **Experience**: Agency, Startups (AI-first platforms), In-house, and Freelance
+* 🧠 **Myers-Briggs**: INFJ-T
+
+---
+
+## 🖼️ Portfolio Preview
+
+Here is a glimpse of the portfolio showcase website:
+
+![Sparsh Bajaj Portfolio Cover](./public/assets/opengraph.webp)
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+The portfolio is built as a lightweight, performant, and responsive Single Page Application (SPA).
+
+* **Framework**: React 19 (Concurrent features)
+* **Language**: TypeScript (Type safety)
+* **Bundler & Tooling**: Vite 6
+* **Styling**: Styled-components & Modern CSS Modules
+* **CMS Integration**: Ghost Content API (dynamically fetching case studies and blog posts)
+* **SEO Engine**: Custom React hook for dynamic metadata, sitemap.xml, robots.txt
+* **Analytics**: Integrated Google Analytics (gtag.js)
+
+---
+
+## ⚙️ Development & Getting Started
+
+If you want to clone this repository and run the website locally, follow these steps:
+
+### Prerequisites
+
+Make sure you have [Node.js](https://nodejs.org/) installed.
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/sparshbajaj/portfolio-2025.git
+   cd portfolio-2025/react-project
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Environment variables**:
+   Create a `.env` file in the root of the `react-project` directory and add your OpenWeather API key:
+   ```env
+   VITE_APP_OPENWEATHER_API_KEY=your_openweather_api_key
+   ```
+
+4. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+   The site will be running at `http://localhost:5173/`.
+
+5. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 📈 Recent Updates & Optimizations
+* **Dynamic SEO Metadata**: Automatic page-specific `<title>`, description, and Open Graph tags on routing transitions.
+* **Sitemap & Crawling**: Integrated `sitemap.xml` and `robots.txt` mapping both main pages and the Ghost blog subdomain.
+* **Performance preloads**: Added preload links for Google Fonts to accelerate initial load time.
