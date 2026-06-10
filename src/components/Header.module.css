@@ -407,3 +407,24 @@
     display: none !important;
   }
 }
+
+/* Translucent & Flush Header for Blog Page */
+.blogHeader {
+  margin-top: 0 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
+@media (max-width: 768px) {
+  .blogHeader {
+    background: rgba(255, 255, 255, 0.85) !important;
+    margin-top: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import styles from './Header.module.css';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import HamburgerIcon from './icons/HamburgerIcon';
 import CloseIcon from './icons/CloseIcon';
 import logo from '/assets/sparsh-logo-dark.svg';
@@ -52,6 +52,9 @@ const BlogIcon = () => (
 const Header = () => {
   const { projects } = useProjects();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isBlogPage = location.pathname.startsWith('/blog');
 
   // Handle escape key to close the menu
   const handleEscKey = useCallback((e: KeyboardEvent) => {
@@ -103,7 +106,7 @@ const Header = () => {
   ), [projects]);
   
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isBlogPage ? styles.blogHeader : ''}`}>
       <Link to="/" className={styles.logo} aria-label="Home">
         <img src={logo} alt="Website logo" className={styles.logoImage} />
       </Link>
