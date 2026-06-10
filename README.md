@@ -20,9 +20,15 @@ I am a Sci-fi and space geek, and a tech-savvy designer at heart. Simplicity, ge
 
 ## 🖼️ Portfolio Preview
 
-Here is a glimpse of the portfolio showcase website:
+Here is a glimpse of the portfolio website layout:
 
 ![Sparsh Bajaj Portfolio Cover](./public/assets/opengraph.webp)
+
+### 💼 Featured Designs & Case Studies
+
+| ![Memoria Call](./public/assets/Memoria.webp) | ![Fluence UX](./public/assets/Fluence.webp) | ![Ninja UX](./public/assets/Ninja.webp) |
+| :---: | :---: | :---: |
+| **MemoriaCall Brand Evolution** | **Fluence UI Design** | **Ninja UX Workflows** |
 
 ---
 
