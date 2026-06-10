@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "portfo-2020"
-  }
+  },
+  "targets": {
+    "portfo-2020": {
+      "hosting": {
+        "main": [
+          "portfo-2020"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

@@ -1,8 +1,15 @@
 import styles from './Home.module.css';
 import Weather from '../components/Weather';
 import { useState, useEffect } from 'react';
+import { useSEO } from '../hooks/useSEO';
 
 const Home = () => {
+  useSEO({
+    title: 'Sparsh Bajaj | UX Designer & Creative Developer',
+    description: 'Explore innovative design solutions and projects in UX/UI design and front-end development by Sparsh Bajaj.',
+    canonicalUrl: 'https://sparshbajaj.me/',
+  });
+
   const [timestamp, setTimestamp] = useState(Date.now());
 
   useEffect(() => {

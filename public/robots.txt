@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sparshbajaj.me/sitemap.xml
+Sitemap: https://blog.sparshbajaj.me/sitemap.xml

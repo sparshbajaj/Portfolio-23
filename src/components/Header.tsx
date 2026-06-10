@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import HamburgerIcon from './icons/HamburgerIcon';
 import CloseIcon from './icons/CloseIcon';
 import logo from '/assets/sparsh-logo-dark.svg';
-import { PROJECTS } from '../data/projects';
+import { useProjects } from '../hooks/useProjects';
 
 // Create reusable SVG components to improve readability
 const AboutMeIcon = () => (
@@ -28,7 +28,29 @@ const LetsTalkIcon = () => (
   </svg>
 );
 
+const BlogIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path
+      d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+    />
+    <path
+      d="M7 7H17"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+    />
+    <path
+      d="M7 12H17"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+    />
+    <path
+      d="M7 17H13"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+    />
+  </svg>
+);
+
 const Header = () => {
+  const { projects } = useProjects();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Handle escape key to close the menu
@@ -58,13 +80,14 @@ const Header = () => {
   
   // Memoize projects to prevent unnecessary re-renders
   const memoizedProjects = useMemo(() => (
-    PROJECTS.map((project) => (
+    projects.map((project) => (
       <a
         key={project.title}
         href={project.link}
         className={styles.mobileProjectCard}
-        target="_blank"
+        target={project.link.startsWith('http') ? "_blank" : undefined}
         rel="noopener noreferrer"
+        onClick={() => setIsMenuOpen(false)}
       >
         <div 
           className={styles.projectThumb}
@@ -77,7 +100,7 @@ const Header = () => {
         </div>
       </a>
     ))
-  ), []);
+  ), [projects]);
   
   return (
     <header className={styles.header}>
@@ -88,6 +111,18 @@ const Header = () => {
       {/* Desktop Navigation */}
       <nav className={styles.nav} aria-label="Desktop Navigation">
         <div className={styles.nav_links_wrapper}>
+          <NavLink
+            to="/blog"
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.active : ''}`
+            }
+          >
+            <div className={styles.nav_icon}>
+              <BlogIcon />
+            </div>
+            <div className={styles.nav_text}>Blog</div>
+          </NavLink>
+
           <NavLink
             to="/about-me"
             className={({ isActive }) =>
@@ -141,6 +176,18 @@ const Header = () => {
 
             {/* Mobile Menu Links */}
             <nav className={styles.mobileMenuLinks} aria-label="Mobile Navigation">
+              {/* Row 0 - Blog */}
+              <div className={styles.buttonRow}>
+                <NavLink
+                  to="/blog"
+                  className={styles.mobileNavLink}
+                  onClick={toggleMenu}
+                >
+                  <BlogIcon />
+                  Blog
+                </NavLink>
+              </div>
+
               {/* First Row - About & Let's Talk */}
               <div className={styles.buttonRow}>
                 <NavLink

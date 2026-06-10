@@ -12,8 +12,14 @@ import AEIcon from '/assets/after-effects.svg';
 import AmericanFlag from '/assets/american_flag2.svg';
 import IndiaFlag from '/assets/India_flag.svg';
 import DownloadButton from '../components/DownloadButton';
+import { useSEO } from '../hooks/useSEO';
 
 const About = () => {
+  useSEO({
+    title: 'About Sparsh Bajaj | UX Designer & Creative Developer',
+    description: 'Learn about Sparsh Bajaj, a UX/UI Designer and Computer Science graduate with over 6 years of experience solving complex user experience issues.',
+    canonicalUrl: 'https://sparshbajaj.me/about-me',
+  });
   // Software tools data organized in arrays for easier management
   const proficientTools = [
     { icon: FigmaIcon, name: "Figma" },

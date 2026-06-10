@@ -1,9 +1,10 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import styles from './ProjectsIsland.module.css';
 import GridIcon from './icons/GridIcon';
-import { PROJECTS } from '../data/projects';
+import { useProjects } from '../hooks/useProjects';
 
 const ProjectsIsland = () => {
+  const { projects } = useProjects();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const expandTimeoutRef = useRef<number | null>(null);
@@ -86,7 +87,7 @@ const ProjectsIsland = () => {
 
       <div className={styles.projects_grid}>
         <ul className={styles.projects_list}>
-          {PROJECTS.map((project, index) => (
+          {projects.map((project, index) => (
             <li 
               key={project.title} 
               className={styles.project_item}
@@ -97,7 +98,7 @@ const ProjectsIsland = () => {
               <a
                 href={project.link}
                 className={styles.project_link}
-                target="_blank"
+                target={project.link.startsWith('http') ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 aria-label={`View ${project.title} project`}
               >

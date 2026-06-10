@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "portfo-2020",
     "public": "dist",
     "ignore": [
       "firebase.json",

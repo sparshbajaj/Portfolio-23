@@ -6,53 +6,27 @@ export interface Project {
     link: string;
   }
   
-  export const PROJECTS: Project[] = [
+  // These are projects that are NOT on Ghost (e.g. Figma links, Internal links)
+  export const STATIC_PROJECTS: Project[] = [
     {
-      title: 'Fluence',
-      type: 'WEB DESIGN',
-      thumb: '/assets/#Fluence.png',
-      link: 'https://loving-sweatshirt-6fa.notion.site/ebd/c367710cd28542cc8f122508f86b106e',
+      title: 'Unified Enterprise UI Delivery',
+      type: 'FIGMA | HANDOFF',
+      thumb: '/assets/thumb.png',
+      link: 'https://www.figma.com/design/f3qnZOoZjfyvixRtZbOWDL/KC-OVERSEAS-UI-Delivery?node-id=20-2&t=nzLR1cs7evos39eX-1',
     },
     {
-      title: 'MemoriaCall',
-      type: 'UI/UX',
-      thumb: '/assets/#Memoria.png',
-      link: 'https://loving-sweatshirt-6fa.notion.site/MemoriaCall-Revolutionizing-Video-Conferencing-with-AI-1c04b10db74880638deedb3133190708',
-    },
-    {
-      title: 'SocialTalent',
-      type: 'UI/UX',
-      thumb: '/assets/#Ninja.png',
-      link: 'https://loving-sweatshirt-6fa.notion.site/Revamping-Social-Talent-s-Admin-Dashboard-1c04b10db748800ba34ae63ea884cab7',
-    },
-    {
-      title: 'PRD & Thinking',
-      type: 'UX Design',
-      thumb: '/assets/#Sparsh.png',
-      link: 'https://loving-sweatshirt-6fa.notion.site/Strategic-Approach-to-Product-Design-and-thinking-1c04b10db74880db821adb9975f0ed24',
-    },
-    {
-      title: 'Design System',
-      type: 'UI/UX',
-      thumb: '/assets/#Ninja.png',
+      title: 'Global Design System Infrastructure',
+      type: 'SYSTEMS DESIGN',
+      thumb: '/assets/thumb.png',
       link: 'https://www.figma.com/design/laAHOJcBjUl0F0fbJ50p6Q/Design-system-Desktop-app?node-id=0-1&t=rBjx3NaVrI4iPVW0-1',
     },
     {
-      title: 'Redesigning MemoriaCall',
-      type: 'UI/UX',
-      thumb: '/assets/#Memoria.png',
-      link: 'https://www.figma.com/slides/ke3SUlTo1peupP965Lt0LM/Memoria?node-id=8-129&t=zZtWuWsjStRDPJbP-1',
-    },
-    {
-      title: 'Portfolio Presentation',
-      type: 'UI/UX',
-      thumb: '/assets/#Sparsh.png',
-      link: 'https://www.figma.com/slides/JfjDttmczA3l3doXan3sqI/Portfolio-Presentation?node-id=1-85&t=enMaIPeu073Ey9RD-1',
-    },
-    {
-      title: 'Know Me',
-      type: 'Personal',
-      thumb: '/assets/#Sparsh.png',
-      link: '/about-me',
-    },
+      title: 'MemoriaCall: Brand & UI Evolution',
+      type: 'VISUAL DESIGN',
+      thumb: '/assets/Memoria.png',
+      link: 'https://www.figma.slides/ke3SUlTo1peupP965Lt0LM/Memoria?node-id=8-129&t=zZtWuWsjStRDPJbP-1',
+    }
   ];
+
+  // For backward compatibility
+  export const PROJECTS = STATIC_PROJECTS;
