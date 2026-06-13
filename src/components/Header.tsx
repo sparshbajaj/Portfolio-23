@@ -178,67 +178,71 @@ const Header = () => {
           aria-label="Mobile navigation menu"
         >
           <div className={styles.mobileMenuContent}>
-            <div className={styles.mobileProjectsGrid}>
-              {memoizedProjects}
+            {/* Primary Navigation Links */}
+            <nav className={styles.mobileMenuLinks} aria-label="Mobile Navigation">
+              <NavLink
+                to="/blog"
+                className={({ isActive }) =>
+                  `${styles.mobileNavLinkItem} ${isActive ? styles.active : ''}`
+                }
+                onClick={toggleMenu}
+              >
+                <BlogIcon />
+                <span>Blog</span>
+              </NavLink>
+
+              <NavLink
+                to="/about-me"
+                className={({ isActive }) =>
+                  `${styles.mobileNavLinkItem} ${isActive ? styles.active : ''}`
+                }
+                onClick={toggleMenu}
+              >
+                <AboutMeIcon />
+                <span>About Me</span>
+              </NavLink>
+
+              <a
+                href="mailto:sparshbajaj97@gmail.com?subject=Let's Talk"
+                className={styles.mobileNavLinkItem}
+                onClick={toggleMenu}
+              >
+                <LetsTalkIcon />
+                <span>Let's Talk</span>
+              </a>
+            </nav>
+
+            {/* Social Media Links */}
+            <div className={styles.mobileSocialRow}>
+              <a
+                href="https://linkedin.com/in/sparsh-bajaj"
+                className={styles.mobileSocialLinkItem}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+              >
+                <UseAnimations animation={linkedin} size={24} strokeColor="currentColor" fillColor="currentColor" />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://github.com/sparshbajaj"
+                className={styles.mobileSocialLinkItem}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+              >
+                <UseAnimations animation={github} size={24} strokeColor="currentColor" fillColor="currentColor" />
+                <span>GitHub</span>
+              </a>
             </div>
 
-            <nav className={styles.mobileMenuLinks} aria-label="Mobile Navigation">
-              <div className={styles.buttonRow}>
-                <NavLink
-                  to="/blog"
-                  className={styles.mobileNavLink}
-                  onClick={toggleMenu}
-                >
-                  <BlogIcon />
-                  Blog
-                </NavLink>
+            {/* Featured Projects Carousel */}
+            <div className={styles.mobileProjectsSection}>
+              <h4 className={styles.mobileProjectsTitle}>Featured Projects</h4>
+              <div className={styles.mobileProjectsSlider}>
+                {memoizedProjects}
               </div>
-
-              <div className={styles.buttonRow}>
-                <NavLink
-                  to="/about-me"
-                  className={styles.mobileNavLink}
-                  onClick={toggleMenu}
-                >
-                  <AboutMeIcon />
-                  About Me
-                </NavLink>
-                <a
-                  href="mailto:sparshbajaj97@gmail.com?subject=Let's Talk"
-                  className={styles.mobileNavLink}
-                >
-                  <LetsTalkIcon />
-                  Let's Talk
-                </a>
-              </div>
-
-              <div className={styles.buttonRow}>
-                <a
-                  href="https://linkedin.com/in/sparsh-bajaj"
-                  className={styles.socialLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn Profile"
-                >
-                  <div className={styles.socialIcon}>
-                    <UseAnimations animation={linkedin} size={24} strokeColor="#ffffff" fillColor="#ffffff" />
-                  </div>
-                  <span className={styles.socialLabel}>LinkedIn</span>
-                </a>
-                <a
-                  href="https://github.com/sparshbajaj"
-                  className={styles.socialLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub Profile"
-                >
-                  <div className={styles.socialIcon}>
-                    <UseAnimations animation={github} size={24} strokeColor="#ffffff" fillColor="#ffffff" />
-                  </div>
-                  <span className={styles.socialLabel}>GitHub</span>
-                </a>
-              </div>
-            </nav>
+            </div>
           </div>
         </div>
       )}
