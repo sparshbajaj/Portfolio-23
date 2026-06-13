@@ -13,6 +13,7 @@ import AmericanFlag from '/assets/american_flag2.svg';
 import IndiaFlag from '/assets/India_flag.svg';
 import DownloadButton from '../components/DownloadButton';
 import { useSEO } from '../hooks/useSEO';
+import useReveal from '../hooks/useReveal';
 
 const About = () => {
   useSEO({
@@ -20,6 +21,12 @@ const About = () => {
     description: 'Learn about Sparsh Bajaj, a UX/UI Designer and Computer Science graduate with over 6 years of experience solving complex user experience issues.',
     canonicalUrl: 'https://sparshbajaj.me/about-me',
   });
+
+  const { ref: heroRef, isVisible: heroVisible } = useReveal({ threshold: 0.3 });
+  const { ref: statsRef, isVisible: statsVisible } = useReveal({ threshold: 0.1 });
+
+  const statDelay = (index: number) => ({ transitionDelay: `${0.15 * index}s` });
+
   // Software tools data organized in arrays for easier management
   const proficientTools = [
     { icon: FigmaIcon, name: "Figma" },
@@ -55,9 +62,12 @@ const About = () => {
   return (
     <div id="swup" className={styles.content_container}>
       {/* Hero Section */}
-      <section className={styles.hero_container}>
+      <section 
+        ref={heroRef}
+        className={`${styles.hero_container} ${styles.revealItem} ${heroVisible ? styles.revealVisible : ''}`}
+      >
         <div className={styles.hero_image}>
-          <img src={TrekImage} alt="Sparsh Bajaj" />
+          <img src={TrekImage} alt="Sparsh Bajaj" loading="lazy" />
         </div>
         
         <div className={styles.hero_text}>
@@ -95,27 +105,42 @@ const About = () => {
       </section>
 
       {/* Stats Grid */}
-      <section className={styles.stats}>
+      <section 
+        ref={statsRef}
+        className={styles.stats}
+      >
         {/* First Row - 3 blocks (Full Name, Degree, Experience) */}
-        <div className={styles.stat_wrapper}>
+        <div 
+          className={`${styles.stat_wrapper} ${styles.revealItem} ${statsVisible ? styles.revealVisible : ''}`}
+          style={statDelay(0)}
+        >
           <div className={styles.stat_title}>Full Name</div>
           <div className={styles.stat}>Sparsh Bajaj</div>
         </div>
 
-        <div className={styles.stat_wrapper}>
+        <div 
+          className={`${styles.stat_wrapper} ${styles.revealItem} ${statsVisible ? styles.revealVisible : ''}`}
+          style={statDelay(1)}
+        >
           <div className={styles.stat_title}>Degree</div>
           <div className={styles.stat}>
             MSc. Cyber Security & B.Tech Computer Science
           </div>
         </div>
 
-        <div className={styles.stat_wrapper}>
+        <div 
+          className={`${styles.stat_wrapper} ${styles.revealItem} ${statsVisible ? styles.revealVisible : ''}`}
+          style={statDelay(2)}
+        >
           <div className={styles.stat_title}>Experience</div>
           <div className={styles.stat}>6+ Years</div>
         </div>
 
         {/* Software section - full width (spans all 6 columns) */}
-        <div className={`${styles.stat_wrapper}`}>
+        <div 
+          className={`${styles.stat_wrapper} ${styles.revealItem} ${statsVisible ? styles.revealVisible : ''}`}
+          style={statDelay(3)}
+        >
           <div className={styles.stat_title}>Software</div>
           <div className={styles.software_content}>
             <div className={styles.software_group}>
@@ -139,7 +164,10 @@ const About = () => {
         </div>
 
         {/* Work History - half width */}
-        <div className={styles.stat_wrapper_half}>
+        <div 
+          className={`${styles.stat_wrapper_half} ${styles.revealItem} ${statsVisible ? styles.revealVisible : ''}`}
+          style={statDelay(4)}
+        >
           <div className={styles.stat_title}>Work History</div>
           <div className={styles.checklist}>
             {workHistory.map((item, index) => (
@@ -151,7 +179,10 @@ const About = () => {
         </div>
 
         {/* Disciplines - 1.5 width */}
-        <div className={styles.stat_wrapper_wide}>
+        <div 
+          className={`${styles.stat_wrapper_wide} ${styles.revealItem} ${statsVisible ? styles.revealVisible : ''}`}
+          style={statDelay(5)}
+        >
           <div className={styles.stat_title}>Disciplines</div>
           <ul className={styles.disciplines_list}>
             {disciplines.map((discipline, index) => (
@@ -161,7 +192,10 @@ const About = () => {
         </div>
 
         {/* Third Row - Languages and Myers-Briggs (both half-height) */}
-        <div className={`${styles.stat_wrapper_wide} ${styles.half_height}`}>
+        <div 
+          className={`${styles.stat_wrapper_wide} ${styles.half_height} ${styles.revealItem} ${statsVisible ? styles.revealVisible : ''}`}
+          style={statDelay(6)}
+        >
           <div className={styles.stat_title}>Languages</div>
           <div className={styles.languages_content}>
             {languages.map((language, index) => (
@@ -177,7 +211,10 @@ const About = () => {
         </div>
 
         {/* Myers-Briggs - half-height */}
-        <div className={`${styles.stat_wrapper_wide} ${styles.half_height}`}>
+        <div 
+          className={`${styles.stat_wrapper_wide} ${styles.half_height} ${styles.revealItem} ${statsVisible ? styles.revealVisible : ''}`}
+          style={statDelay(7)}
+        >
           <div className={styles.stat_title}>Myers-Briggs</div>
           <div className={styles.stat}>INFJ-T</div>
         </div>

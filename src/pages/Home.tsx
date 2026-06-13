@@ -2,6 +2,7 @@ import styles from './Home.module.css';
 import Weather from '../components/Weather';
 import { useState, useEffect } from 'react';
 import { useSEO } from '../hooks/useSEO';
+import useReveal from '../hooks/useReveal';
 
 const Home = () => {
   useSEO({
@@ -19,12 +20,26 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const { ref: headingRef, isVisible: headingVisible } = useReveal<HTMLHeadingElement>({ threshold: 0.3 });
+  const { ref: paragraphRef, isVisible: paragraphVisible } = useReveal<HTMLParagraphElement>({ threshold: 0.3 });
+  const { ref: imageRef, isVisible: imageVisible } = useReveal<HTMLDivElement>({ threshold: 0.3 });
+
   return (
     <>
       <div className={styles.contentContainer}>
         <div className={styles.textBlock}>
-          <h1 className={styles.heading}>Transforming Complexity into Elegant Solutions</h1>
-          <p className={styles.subheading}>
+          <h1 
+            ref={headingRef}
+            className={`${styles.heading} ${styles.revealItem} ${headingVisible ? styles.revealVisible : ''}`}
+            style={{ transitionDelay: '0.1s' }}
+          >
+            Transforming Complexity into Elegant Solutions
+          </h1>
+          <p 
+            ref={paragraphRef}
+            className={`${styles.subheading} ${styles.revealItem} ${paragraphVisible ? styles.revealVisible : ''}`}
+            style={{ transitionDelay: '0.2s' }}
+          >
             Idea &gt; Research &gt; Design &gt; Test &gt; Learn from it &gt; Make it better &gt; Test &gt;
             Learn from it &gt; Keep making it better &gt; Keep testing
           </p>
@@ -38,7 +53,11 @@ const Home = () => {
             opportunities in Dublin, Ireland <Weather />
           </p>
         </div>
-        <div className={styles.imageBlock}>
+        <div 
+          ref={imageRef}
+          className={`${styles.imageBlock} ${styles.revealItem} ${imageVisible ? styles.revealVisible : ''}`}
+          style={{ transitionDelay: '0.3s' }}
+        >
           <div className={styles.profileImage} />
           <div className={styles.nowPlaying}>
             <img 

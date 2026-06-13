@@ -33,3 +33,6 @@ _secret*
 .firebase
 .git_disabled
 
+# Compiled JS artifacts (TypeScript compiles to .js)
+src/**/*.js
+

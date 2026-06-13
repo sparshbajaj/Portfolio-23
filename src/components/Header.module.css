@@ -14,7 +14,45 @@
   inset: 0% 0% auto;
   z-index: 1000;
   width: 100%;
-  box-sizing: border-box;
+  background: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Inner container that wraps nav content and hosts liquidGL effect */
+.glassTarget {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 0 20px;
+}
+
+/* Ensure nav content stays above liquidGL canvas */
+.logo,
+.nav,
+.mobileMenuButton {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .header {
+    background: transparent;
+    margin-top: 0;
+    padding: 10px 16px;
+    border-bottom: none;
+  }
+
+  .glassTarget {
+    background: var(--cell-grey);
+    border-radius: 12px;
+    padding: 0 12px;
+  }
 }
 
 /* Logo styles */
@@ -118,11 +156,11 @@
   }
   
   @keyframes springBack {
-    0% { transform: rotate(var(--current-rotation)); }
-    20% { transform: rotate(-30deg); }
-    40% { transform: rotate(20deg); }
-    60% { transform: rotate(-15deg); }
-    80% { transform: rotate(5deg); }
+    0% { transform: rotate(360deg); }
+    20% { transform: rotate(330deg); }
+    40% { transform: rotate(380deg); }
+    60% { transform: rotate(345deg); }
+    80% { transform: rotate(355deg); }
     100% { transform: rotate(0deg); }
   }
   
@@ -254,8 +292,6 @@
 
 .projectInfo {
   padding: 1rem;
-  background: url('../assets/#') no-repeat center center;
-  background-size: cover;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -411,10 +447,8 @@
 /* Translucent & Flush Header for Blog Page */
 .blogHeader {
   margin-top: 0 !important;
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: transparent !important;
+  border-bottom: none !important;
   padding-top: 15px !important;
   padding-bottom: 15px !important;
 }
@@ -425,6 +459,36 @@
     margin-top: 0 !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .mobileMenuOverlay,
+  .navLink,
+  .talkButton,
+  .talkButton .button_background,
+  .mobileProjectCard,
+  .mobileNavLink,
+  .socialLink,
+  .aboutButton .nav_icon svg {
+    transition-duration: 0.1s !important;
+    animation-duration: 0.1s !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .talkButton:hover .nav_text,
+  .talkButton:hover .nav_icon {
+    transition-duration: 0.1s !important;
+  }
+
+  .aboutButton:hover .nav_icon svg {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .aboutButton:not(:hover) .nav_icon svg {
+    animation: none !important;
+    transform: none !important;
   }
 }
 

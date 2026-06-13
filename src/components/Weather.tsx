@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
 
+// Module-level cache with 30-minute TTL
+interface CacheEntry {
+  data: { iconUrl: string; temperature: number } | null;
+  timestamp: number;
+}
+
+let weatherCache: CacheEntry | null = null;
+const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
+
 const Weather = () => {
   const [weatherData, setWeatherData] = useState<{
     iconUrl: string | null;
@@ -11,10 +20,18 @@ const Weather = () => {
 
   useEffect(() => {
     const fetchWeather = async () => {
+      // Check cache first
+      if (weatherCache && (Date.now() - weatherCache.timestamp) < CACHE_TTL) {
+        if (weatherCache.data) {
+          setWeatherData(weatherCache.data);
+        }
+        return;
+      }
+
       try {
         const apiKey = import.meta.env.VITE_APP_OPENWEATHER_API_KEY;
         if (!apiKey) {
-          console.error("Missing API key");
+          console.error("Missing VITE_APP_OPENWEATHER_API_KEY");
           return;
         }
 
@@ -28,10 +45,15 @@ const Weather = () => {
         
         if (!data?.weather?.[0]?.icon || !data?.main?.temp) return;
         
-        setWeatherData({
+        const result = {
           iconUrl: `https://openweathermap.org/img/wn/${data.weather[0].icon.replace(/n$/, 'd')}.png`,
           temperature: data.main.temp
-        });
+        };
+
+        // Update cache
+        weatherCache = { data: result, timestamp: Date.now() };
+        
+        setWeatherData(result);
       } catch (err) {
         console.error(err);
       }
@@ -50,6 +72,7 @@ const Weather = () => {
         src={weatherData.iconUrl} 
         alt="Weather" 
         style={{ width: '24px', height: '24px', marginRight: '2px' }}
+        loading="lazy"
       />
       {Math.round(weatherData.temperature)}°C
     </span>

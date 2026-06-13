@@ -3,10 +3,11 @@
     width: 100%;
     color: white;
     margin: 2.5rem 0;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     right: 0;
     left: 0;
+    z-index: 5;
   }
   
   .footer-container {

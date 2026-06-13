@@ -112,7 +112,6 @@
 
 /* Mobile breakpoint */
 @media screen and (max-width: 767px) {
-  body  
   .contentContainer {
     padding: 1rem 0 3rem 0 ;
   }
@@ -145,5 +144,36 @@
   .imageBlock {
     max-width: 100%;
     padding: 0 1rem;
+  }
+}
+
+/* Stagger entrance animation */
+.revealItem {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.revealVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion) {
+  .revealItem,
+  .revealVisible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .profileImage,
+  .hero_image img,
+  .nowPlaying {
+    transition-duration: 0.1s !important;
+  }
+  
+  .hero_image img:hover {
+    transform: none;
   }
 }

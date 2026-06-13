@@ -1,10 +1,11 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import styles from './Header.module.css';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import HamburgerIcon from './icons/HamburgerIcon';
 import CloseIcon from './icons/CloseIcon';
 import logo from '/assets/sparsh-logo-dark.svg';
 import { useProjects } from '../hooks/useProjects';
+import { useLiquidGL } from '../hooks/useLiquidGL';
 
 // Create reusable SVG components to improve readability
 const AboutMeIcon = () => (
@@ -53,8 +54,26 @@ const Header = () => {
   const { projects } = useProjects();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const headerRef = useRef<HTMLElement>(null);
 
   const isBlogPage = location.pathname.startsWith('/blog');
+
+  // Initialize liquidGL on the header element
+  useLiquidGL({
+    target: '.liquidGL-header',
+    snapshot: 'body',
+    resolution: 2,
+    refraction: 0.026,
+    bevelDepth: 0.119,
+    bevelWidth: 0.057,
+    frost: 0,
+    specular: true,
+    shadow: true,
+    reveal: 'fade',
+    tilt: false,
+    tiltFactor: 10,
+    magnify: 1,
+  }, []);
 
   // Handle escape key to close the menu
   const handleEscKey = useCallback((e: KeyboardEvent) => {
@@ -72,7 +91,6 @@ const Header = () => {
       document.body.style.overflow = 'auto';
     }
     
-    // Simplified cleanup function
     return () => {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', handleEscKey);
@@ -81,7 +99,6 @@ const Header = () => {
 
   const toggleMenu = useCallback(() => setIsMenuOpen(prev => !prev), []);
   
-  // Memoize projects to prevent unnecessary re-renders
   const memoizedProjects = useMemo(() => (
     projects.map((project) => (
       <a
@@ -106,10 +123,14 @@ const Header = () => {
   ), [projects]);
   
   return (
-    <header className={`${styles.header} ${isBlogPage ? styles.blogHeader : ''}`}>
-      <Link to="/" className={styles.logo} aria-label="Home">
-        <img src={logo} alt="Website logo" className={styles.logoImage} />
-      </Link>
+    <header 
+      ref={headerRef}
+      className={`${styles.header} ${isBlogPage ? styles.blogHeader : ''}`}
+    >
+      <div className={`${styles.glassTarget} liquidGL-header`}>
+        <Link to="/" className={styles.logo} aria-label="Home">
+          <img src={logo} alt="Website logo" className={styles.logoImage} />
+        </Link>
 
       {/* Desktop Navigation */}
       <nav className={styles.nav} aria-label="Desktop Navigation">
@@ -161,8 +182,9 @@ const Header = () => {
       >
         {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
       </button>
+      </div>
 
-      {/* Mobile Menu Overlay - Only render when needed */}
+      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div 
           id="mobile-menu"
@@ -172,14 +194,11 @@ const Header = () => {
           aria-label="Mobile navigation menu"
         >
           <div className={styles.mobileMenuContent}>
-            {/* Projects Grid - Using memoized content */}
             <div className={styles.mobileProjectsGrid}>
               {memoizedProjects}
             </div>
 
-            {/* Mobile Menu Links */}
             <nav className={styles.mobileMenuLinks} aria-label="Mobile Navigation">
-              {/* Row 0 - Blog */}
               <div className={styles.buttonRow}>
                 <NavLink
                   to="/blog"
@@ -191,7 +210,6 @@ const Header = () => {
                 </NavLink>
               </div>
 
-              {/* First Row - About & Let's Talk */}
               <div className={styles.buttonRow}>
                 <NavLink
                   to="/about-me"
@@ -210,7 +228,6 @@ const Header = () => {
                 </a>
               </div>
 
-              {/* Second Row - Social Links */}
               <div className={styles.buttonRow}>
                 <a
                   href="https://linkedin.com/in/sparsh-bajaj"
@@ -224,6 +241,7 @@ const Header = () => {
                     className={styles.socialIcon} 
                     alt="" 
                     aria-hidden="true"
+                    loading="lazy"
                   />
                   <span className={styles.socialLabel}>LinkedIn</span>
                 </a>
@@ -239,6 +257,7 @@ const Header = () => {
                     className={styles.socialIcon} 
                     alt=""
                     aria-hidden="true"
+                    loading="lazy"
                   />
                   <span className={styles.socialLabel}>GitHub</span>
                 </a>

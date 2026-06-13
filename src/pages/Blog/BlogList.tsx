@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './Blog.module.css';
 import { useSEO } from '../../hooks/useSEO';
+import useReveal from '../../hooks/useReveal';
 
 interface Post {
   id: string;
@@ -14,7 +15,7 @@ interface Post {
 }
 
 const GHOST_API_URL = 'https://blog.sparshbajaj.me';
-const GHOST_CONTENT_API_KEY = '6dee514456fe30f2ebe98ef29a';
+const GHOST_CONTENT_API_KEY = import.meta.env.VITE_GHOST_CONTENT_API_KEY;
 
 const BlogList = () => {
   useSEO({
@@ -27,6 +28,8 @@ const BlogList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const { ref: gridRef, isVisible: gridVisible } = useReveal({ threshold: 0.1 });
+
   useEffect(() => {
     // Set the global background to white for this page only
     document.body.style.backgroundColor = '#ffffff';
@@ -38,6 +41,12 @@ const BlogList = () => {
   }, []);
 
   useEffect(() => {
+    if (!GHOST_CONTENT_API_KEY) {
+      setError('Ghost Content API key not configured');
+      setLoading(false);
+      return;
+    }
+
     const fetchPosts = async () => {
       try {
         const response = await fetch(
@@ -63,7 +72,10 @@ const BlogList = () => {
   if (loading) {
     return (
       <div className={styles.blogContainer}>
-        <div className={styles.loader}>Loading posts...</div>
+        <div className={styles.loader}>
+          <div className={styles.spinner}></div>
+          <span>Loading posts...</span>
+        </div>
       </div>
     );
   }
@@ -81,12 +93,20 @@ const BlogList = () => {
       {posts.length === 0 ? (
         <div className={styles.noPosts}>No posts found yet. Check back later!</div>
       ) : (
-        <div className={styles.grid}>
-          {posts.map((post) => (
-            <a href={post.url} key={post.id} className={styles.card}>
+        <div 
+          ref={gridRef}
+          className={styles.grid}
+        >
+          {posts.map((post, index) => (
+            <a 
+              href={post.url} 
+              key={post.id} 
+              className={`${styles.card} ${styles.revealItem} ${gridVisible ? styles.revealVisible : ''}`}
+              style={{ transitionDelay: `${0.1 * index}s` }}
+            >
               {post.feature_image && (
                 <div className={styles.imageContainer}>
-                  <img src={post.feature_image} alt={post.title} className={styles.featureImage} />
+                  <img src={post.feature_image} alt={post.title} className={styles.featureImage} loading="lazy" />
                 </div>
               )}
               <div className={styles.content}>
@@ -96,7 +116,7 @@ const BlogList = () => {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
-                  })} • {post.reading_time} min read
+                  })} &bull; {post.reading_time} min read
                 </div>
                 <p className={styles.excerpt}>{post.excerpt}</p>
               </div>

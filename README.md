@@ -68,8 +68,13 @@ Make sure you have [Node.js](https://nodejs.org/) installed.
    ```
 
 3. **Environment variables**:
-   Create a `.env` file in the root of the `react-project` directory and add your OpenWeather API key:
+   Copy `.env.example` to `.env` and add your API keys:
+   ```bash
+   cp .env.example .env
+   ```
+   Then edit `.env` with your keys:
    ```env
+   VITE_GHOST_CONTENT_API_KEY=your_ghost_content_api_key
    VITE_APP_OPENWEATHER_API_KEY=your_openweather_api_key
    ```
 

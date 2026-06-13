@@ -2,7 +2,29 @@
   position: relative;
 }
 
+/* Fade transition for route changes */
+.pageTransition {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .pageTransition {
+    animation: none;
+  }
+}
+
 .mainContent {
-  padding: 2rem;
+  padding: 0 9vw;
   margin-top: 2em;
 }

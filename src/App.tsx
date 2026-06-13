@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import BlogList from './pages/Blog/BlogList';
+import NotFound from './pages/NotFound';
+import JSONLDSchema from './components/JSONLDSchema';
 import styles from './App.module.css';
 
 // Analytics component to track page views
@@ -24,21 +26,32 @@ const Analytics = () => {
   return null;
 };
 
+// Routes wrapper that keys on pathname for page transition animation
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  
+  return (
+    <main className={styles.mainContent} key={location.pathname}>
+      <div className={styles.pageTransition}>
+        <JSONLDSchema />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about-me" element={<About />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </main>
+  );
+};
+
 function App() {
   return (
     <Router>
       <Analytics />
       <div className={styles.appContainer}>
         <Header />
-        <main className={styles.mainContent} style={{ 
-          padding: '0 9vw'
-        }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about-me" element={<About />} />
-            <Route path="/blog" element={<BlogList />} />
-          </Routes>
-        </main>
+        <AnimatedRoutes />
         <Footer />
       </div>
     </Router>
