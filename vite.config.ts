@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import sharp from 'sharp'
 import fs from 'fs'
@@ -10,12 +10,15 @@ import vitePluginSitemap from 'vite-plugin-sitemap'
 const validateEnv = () => {
   if (process.env.VITEST || process.env.NODE_ENV === 'test') return
 
+  const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '')
   const required = ['VITE_APP_OPENWEATHER_API_KEY', 'VITE_GHOST_CONTENT_API_KEY']
   const missing: string[] = []
 
   for (const varName of required) {
-    if (!process.env[varName]) {
+    if (!env[varName] && !process.env[varName]) {
       missing.push(varName)
+    } else if (env[varName]) {
+      process.env[varName] = env[varName]
     }
   }
 

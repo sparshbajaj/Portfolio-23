@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import DownloadButton from '../components/DownloadButton';
-import userEvent from '@testing-library/user-event';
 
 describe('DownloadButton', () => {
   it('renders children inside the button', () => {

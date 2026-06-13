@@ -79,6 +79,12 @@
   gap: 2rem;
 }
 
+@media (min-width: 769px) {
+  .grid {
+    margin-top: 3vh;
+  }
+}
+
 .card {
   display: flex;
   flex-direction: column;

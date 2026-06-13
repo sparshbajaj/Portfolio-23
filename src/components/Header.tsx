@@ -5,7 +5,9 @@ import HamburgerIcon from './icons/HamburgerIcon';
 import CloseIcon from './icons/CloseIcon';
 import logo from '/assets/sparsh-logo-dark.svg';
 import { useProjects } from '../hooks/useProjects';
-import { useLiquidGL } from '../hooks/useLiquidGL';
+import UseAnimations from 'react-useanimations';
+import github from 'react-useanimations/lib/github';
+import linkedin from 'react-useanimations/lib/linkedin';
 
 // Create reusable SVG components to improve readability
 const AboutMeIcon = () => (
@@ -58,23 +60,6 @@ const Header = () => {
 
   const isBlogPage = location.pathname.startsWith('/blog');
 
-  // Initialize liquidGL on the header element
-  useLiquidGL({
-    target: '.liquidGL-header',
-    snapshot: 'body',
-    resolution: 2,
-    refraction: 0.026,
-    bevelDepth: 0.119,
-    bevelWidth: 0.057,
-    frost: 0,
-    specular: true,
-    shadow: true,
-    reveal: 'fade',
-    tilt: false,
-    tiltFactor: 10,
-    magnify: 1,
-  }, []);
-
   // Handle escape key to close the menu
   const handleEscKey = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape' && isMenuOpen) {
@@ -90,7 +75,7 @@ const Header = () => {
     } else {
       document.body.style.overflow = 'auto';
     }
-    
+
     return () => {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', handleEscKey);
@@ -98,7 +83,7 @@ const Header = () => {
   }, [isMenuOpen, handleEscKey]);
 
   const toggleMenu = useCallback(() => setIsMenuOpen(prev => !prev), []);
-  
+
   const memoizedProjects = useMemo(() => (
     projects.map((project) => (
       <a
@@ -109,7 +94,7 @@ const Header = () => {
         rel="noopener noreferrer"
         onClick={() => setIsMenuOpen(false)}
       >
-        <div 
+        <div
           className={styles.projectThumb}
           style={{ backgroundImage: `url(${project.thumb})` }}
           aria-hidden="true"
@@ -121,72 +106,71 @@ const Header = () => {
       </a>
     ))
   ), [projects]);
-  
+
   return (
-    <header 
+    <header
       ref={headerRef}
       className={`${styles.header} ${isBlogPage ? styles.blogHeader : ''}`}
     >
-      <div className={`${styles.glassTarget} liquidGL-header`}>
+      <div className={styles.glassTarget}>
         <Link to="/" className={styles.logo} aria-label="Home">
           <img src={logo} alt="Website logo" className={styles.logoImage} />
         </Link>
 
-      {/* Desktop Navigation */}
-      <nav className={styles.nav} aria-label="Desktop Navigation">
-        <div className={styles.nav_links_wrapper}>
-          <NavLink
-            to="/blog"
-            className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            <div className={styles.nav_icon}>
-              <BlogIcon />
-            </div>
-            <div className={styles.nav_text}>Blog</div>
-          </NavLink>
+        {/* Desktop Navigation */}
+        <nav className={styles.nav} aria-label="Desktop Navigation">
+          <div className={styles.nav_links_wrapper}>
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                `${styles.navLink} ${isActive ? styles.active : ''}`
+              }
+            >
+              <div className={styles.nav_icon}>
+                <BlogIcon />
+              </div>
+              <div className={styles.nav_text}>Blog</div>
+            </NavLink>
 
-          <NavLink
-            to="/about-me"
-            className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.active : ''} ${styles.aboutButton}`
-            }
-          >
-            <div className={styles.nav_icon}>
-              <AboutMeIcon />
-            </div>
-            <div className={styles.nav_text}>About Me</div>
-          </NavLink>
+            <NavLink
+              to="/about-me"
+              className={({ isActive }) =>
+                `${styles.navLink} ${isActive ? styles.active : ''} ${styles.aboutButton}`
+              }
+            >
+              <div className={styles.nav_icon}>
+                <AboutMeIcon />
+              </div>
+              <div className={styles.nav_text}>About Me</div>
+            </NavLink>
 
-          <a 
-            href="mailto:sparshbajaj97@gmail.com?subject=Let's Talk" 
-            className={`${styles.lets_talk_link} ${styles.talkButton}`}
-          >
-            <span className={styles.button_background}></span>
-            <div className={styles.nav_icon}>
-              <LetsTalkIcon />
-            </div>
-            <div className={styles.nav_text}>Let's Talk</div>
-          </a>
-        </div>
-      </nav>
+            <a
+              href="mailto:sparshbajaj97@gmail.com?subject=Let's Talk"
+              className={`${styles.lets_talk_link}`}
+            >
+              <div className={styles.nav_icon}>
+                <LetsTalkIcon />
+              </div>
+              <div className={styles.nav_text}>Let's Talk</div>
+            </a>
+          </div>
+        </nav>
 
-      {/* Mobile Menu Button */}
-      <button 
-        className={`${styles.mobileMenuButton} ${isMenuOpen ? styles.active : ''}`}
-        onClick={toggleMenu}
-        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        aria-expanded={isMenuOpen}
-        aria-controls="mobile-menu"
-      >
-        {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
-      </button>
+        {/* Mobile Menu Button */}
+        <button
+          className={`${styles.mobileMenuButton} ${isMenuOpen ? styles.active : ''}`}
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+        >
+          {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+        </button>
       </div>
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div 
+        <div
           id="mobile-menu"
           className={`${styles.mobileMenuOverlay} ${styles.active}`}
           role="dialog"
@@ -219,8 +203,8 @@ const Header = () => {
                   <AboutMeIcon />
                   About Me
                 </NavLink>
-                <a 
-                  href="mailto:sparshbajaj97@gmail.com?subject=Let's Talk" 
+                <a
+                  href="mailto:sparshbajaj97@gmail.com?subject=Let's Talk"
                   className={styles.mobileNavLink}
                 >
                   <LetsTalkIcon />
@@ -236,13 +220,9 @@ const Header = () => {
                   rel="noopener noreferrer"
                   aria-label="LinkedIn Profile"
                 >
-                  <img 
-                    src="/assets/linkedin-svgrepo-com.svg" 
-                    className={styles.socialIcon} 
-                    alt="" 
-                    aria-hidden="true"
-                    loading="lazy"
-                  />
+                  <div className={styles.socialIcon}>
+                    <UseAnimations animation={linkedin} size={24} strokeColor="#ffffff" fillColor="#ffffff" />
+                  </div>
                   <span className={styles.socialLabel}>LinkedIn</span>
                 </a>
                 <a
@@ -252,13 +232,9 @@ const Header = () => {
                   rel="noopener noreferrer"
                   aria-label="GitHub Profile"
                 >
-                  <img 
-                    src="/assets/github-svgrepo-com.svg" 
-                    className={styles.socialIcon} 
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                  />
+                  <div className={styles.socialIcon}>
+                    <UseAnimations animation={github} size={24} strokeColor="#ffffff" fillColor="#ffffff" />
+                  </div>
                   <span className={styles.socialLabel}>GitHub</span>
                 </a>
               </div>

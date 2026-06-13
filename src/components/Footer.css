@@ -2,39 +2,60 @@
 .footer {
     width: 100%;
     color: white;
-    margin: 2.5rem 0;
-    position: sticky;
-    bottom: 0;
+    position: fixed;
+    bottom: 30px;
     right: 0;
     left: 0;
-    z-index: 5;
+    z-index: 998;
+    pointer-events: none;
   }
   
   .footer-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
+    align-items: flex-end;
+    padding: 0 10vw;
     z-index: 4;
+    pointer-events: auto;
     }
   
   .footer-icon {
     display: flex;
     align-items: center;
+    margin-bottom: 6px; /* Adjusted for 47px button height vs 59px island */
   }
   
   .icon-link {
-    color: #a0aec0;
-    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-decoration: none;
+    color: #1a1a1a;
   }
   
   .icon-link:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.4);
     color: white;
   }
   
   .icon {
-    width: 36px;
-    height: 36px;
+    width: 22px;
+    height: 22px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .icon-link:hover .icon {
+    transform: scale(1.15) rotate(5deg);
   }
   
   .projects-islands-wrapper {

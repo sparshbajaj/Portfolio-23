@@ -8,14 +8,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
-  margin-top: 30px;
   position: fixed;
-  inset: 0% 0% auto;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 18vw);
+  max-width: 1200px;
+  box-sizing: border-box;
   z-index: 1000;
-  width: 100%;
   background: transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Inner container that wraps nav content and hosts liquidGL effect */
@@ -25,33 +26,33 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 0 20px;
+  background: transparent;
+  border-radius: 0;
+  padding: 18px 0;
 }
 
-/* Ensure nav content stays above liquidGL canvas */
+/* Ensure nav content stays above liquidGL canvas and handles pointer events */
 .logo,
 .nav,
 .mobileMenuButton {
   position: relative;
   z-index: 2;
+  pointer-events: auto; /* Override parent pointer-events: none from liquidGL */
 }
 
 @media (max-width: 768px) {
   .header {
     background: transparent;
     margin-top: 0;
-    padding: 10px 16px;
     border-bottom: none;
+    width: calc(100% - 18vw);
+    top: 0;
   }
 
   .glassTarget {
-    background: var(--cell-grey);
-    border-radius: 12px;
-    padding: 0 12px;
+    background: transparent;
+    border-radius: 0;
+    padding: 10px 0;
   }
 }
 
@@ -79,23 +80,47 @@
   align-items: center;
 }
 
-.navLink {
+.navLink,
+.lets_talk_link {
   display: flex;
   align-items: center;
   gap: 0.8rem;
   text-decoration: none;
-  color: var(--kinda-black);
-  padding: 0.5rem 1rem;
-  transition: all 0.3s ease;
+  color: var(--kinda-black) !important;
+  padding: 0.7rem 1.6rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .navLink,
+  .lets_talk_link {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.navLink:hover,
+.lets_talk_link:hover {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .navLink.active {
-  font-weight: 600;
-}
-
-.navLink:hover {
-  color: var(--kinda-black);
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.7);
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 /* Icon container */
@@ -111,21 +136,6 @@
 .nav_icon svg {
   width: 100%;
   height: 100%;
-}
-/* Let's Talk Button */
-.lets_talk_link {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  text-decoration: none;
-  color: var(--kinda-black);
-  padding: 0.5rem 1.5rem;
-  border: 2px solid currentColor;
-  border-radius: 9999px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
 }
 
 /* About Me Button Animation */
@@ -162,40 +172,6 @@
     60% { transform: rotate(345deg); }
     80% { transform: rotate(355deg); }
     100% { transform: rotate(0deg); }
-  }
-  
-  /* Let's Talk Button Animation - Fixed */
-  .talkButton {
-    position: relative;
-    isolation: isolate; /* Creates a new stacking context */
-  }
-  
-  .talkButton .button_background {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background: var(--kinda-black);
-    transition: height 0.8s cubic-bezier(0.33, 1, 0.68, 1);
-    z-index: -1;
-  }
-
-  .talkButton:hover .button_background {
-    height: 100%;
-  }
-
-  .talkButton:hover .nav_text,
-  .talkButton:hover .nav_icon {
-    color: white;
-    transition: color 0.4s ease 0.2s;
-  }
-  
-  /* Fix for black line after hover */
-  .talkButton:not(:hover) .button_background {
-    transition: height 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-    height: 0;
   }
 }
 
@@ -263,6 +239,8 @@
 
 .mobileProjectCard {
   background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -338,6 +316,8 @@
   padding: 1rem 1.5rem;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: white;
   font-size: 1rem;
   transition: background 0.3s ease, transform 0.2s ease;
@@ -370,6 +350,8 @@
   padding: 1rem;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: background 0.3s ease, transform 0.2s ease;
   text-decoration: none;
 }
@@ -449,7 +431,6 @@
   margin-top: 0 !important;
   background: transparent !important;
   border-bottom: none !important;
-  padding-top: 15px !important;
   padding-bottom: 15px !important;
 }
 
@@ -457,7 +438,6 @@
   .blogHeader {
     background: rgba(255, 255, 255, 0.85) !important;
     margin-top: 0 !important;
-    padding-top: 10px !important;
     padding-bottom: 10px !important;
   }
 }

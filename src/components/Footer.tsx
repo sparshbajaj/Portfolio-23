@@ -1,8 +1,9 @@
 import React from 'react';
 import './Footer.css';
 import ProjectsIsland from './ProjectsIsland';
-import linkedin from '/assets/linkedin-svgrepo-com.svg';
-import github from '/assets/github-svgrepo-com.svg';
+import UseAnimations from 'react-useanimations';
+import github from 'react-useanimations/lib/github';
+import linkedin from 'react-useanimations/lib/linkedin';
 
 interface FooterProps {
   className?: string;
@@ -21,7 +22,9 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
             aria-label="LinkedIn"
             className="icon-link"
           >
-            <img src={linkedin} className="icon" alt="LinkedIn profile link" loading="lazy" />
+            <div className="icon">
+              <UseAnimations animation={linkedin} size={22} strokeColor="#000000" fillColor="#000000" />
+            </div>
           </a>
         </div>
 
@@ -39,7 +42,9 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
             aria-label="GitHub"
             className="icon-link"
           >
-            <img src={github} className="icon" alt="GitHub profile link" loading="lazy" />
+            <div className="icon">
+              <UseAnimations animation={github} size={22} strokeColor="#000000" fillColor="#000000" />
+            </div>
           </a>
         </div>
       </div>

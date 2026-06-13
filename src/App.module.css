@@ -1,5 +1,6 @@
 .appContainer {
   position: relative;
+  width: 100%;
 }
 
 /* Fade transition for route changes */
@@ -27,4 +28,19 @@
 .mainContent {
   padding: 0 9vw;
   margin-top: 2em;
+  flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+  }
+  
+  .pageTransition {
+    width: 100%;
+  }
 }

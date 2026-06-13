@@ -69,34 +69,19 @@ const BlogList = () => {
     fetchPosts();
   }, []);
 
-  if (loading) {
-    return (
-      <div className={styles.blogContainer}>
+  return (
+    <div className={styles.blogContainer} ref={gridRef}>
+      {loading ? (
         <div className={styles.loader}>
           <div className={styles.spinner}></div>
           <span>Loading posts...</span>
         </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={styles.blogContainer}>
+      ) : error ? (
         <div className={styles.error}>Error: {error}</div>
-      </div>
-    );
-  }
-
-  return (
-    <div className={styles.blogContainer}>
-      {posts.length === 0 ? (
+      ) : posts.length === 0 ? (
         <div className={styles.noPosts}>No posts found yet. Check back later!</div>
       ) : (
-        <div 
-          ref={gridRef}
-          className={styles.grid}
-        >
+        <div className={styles.grid}>
           {posts.map((post, index) => (
             <a 
               href={post.url} 

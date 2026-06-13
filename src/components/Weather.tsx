@@ -9,6 +9,27 @@ interface CacheEntry {
 let weatherCache: CacheEntry | null = null;
 const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
+const OWM_TO_METEOCONS: Record<string, string> = {
+  "01d": "clear-day",
+  "01n": "clear-night",
+  "02d": "partly-cloudy-day",
+  "02n": "partly-cloudy-night",
+  "03d": "cloudy",
+  "03n": "cloudy",
+  "04d": "overcast-day",
+  "04n": "overcast-night",
+  "09d": "drizzle",
+  "09n": "drizzle",
+  "10d": "partly-cloudy-day-rain",
+  "10n": "partly-cloudy-night-rain",
+  "11d": "thunderstorms-day",
+  "11n": "thunderstorms-night",
+  "13d": "partly-cloudy-day-snow",
+  "13n": "partly-cloudy-night-snow",
+  "50d": "mist",
+  "50n": "mist"
+};
+
 const Weather = () => {
   const [weatherData, setWeatherData] = useState<{
     iconUrl: string | null;
@@ -45,8 +66,11 @@ const Weather = () => {
         
         if (!data?.weather?.[0]?.icon || !data?.main?.temp) return;
         
+        const owmIcon = data.weather[0].icon;
+        const meteoconSlug = OWM_TO_METEOCONS[owmIcon] || "clear-day";
+        
         const result = {
-          iconUrl: `https://openweathermap.org/img/wn/${data.weather[0].icon.replace(/n$/, 'd')}.png`,
+          iconUrl: `https://cdn.meteocons.com/3.0.0-next.10/svg/fill/${meteoconSlug}.svg`,
           temperature: data.main.temp
         };
 
@@ -67,11 +91,11 @@ const Weather = () => {
   }
   
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle', fontWeight: 600 }}>
       <img 
         src={weatherData.iconUrl} 
         alt="Weather" 
-        style={{ width: '24px', height: '24px', marginRight: '2px' }}
+        style={{ width: '28px', height: '28px', marginRight: '4px' }}
         loading="lazy"
       />
       {Math.round(weatherData.temperature)}°C
