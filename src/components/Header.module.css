@@ -114,13 +114,7 @@
   pointer-events: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  .navLink,
-  .lets_talk_link {
-    border-color: rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.08);
-  }
-}
+
 
 .navLink:hover,
 .lets_talk_link:hover {
@@ -491,28 +485,19 @@
     color: var(--kinda-black);
   }
 
-  @media (prefers-color-scheme: dark) {
-    .mobileMenuButton {
-      color: white;
-      border-color: rgba(255, 255, 255, 0.15);
-    }
-  }
-
   .mobileMenuButton:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .mobileMenuButton:focus {
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
-    }
   }
 
   .mobileMenuButton.active {
     color: white;
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .mobileMenuButton.active:focus {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
   }
 
   .mobileMenuButton svg {
@@ -552,12 +537,6 @@
     background: rgba(255, 255, 255, 0.8) !important;
     margin-top: 0 !important;
     padding-bottom: 12px !important;
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    .blogHeader {
-      background: rgba(31, 31, 31, 0.8) !important;
-    }
   }
 }
 
